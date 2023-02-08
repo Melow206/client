@@ -51,7 +51,7 @@ const HeroSliderSix = ({ heroSliderData }) => {
                             <h2 className="space-mb--20 title">
                               {element.title}
                             </h2>
-                            <Link href={element.redirect_url}>
+                            <Link href={element.redirect_url ?? ""}>
                               <a className="btn btn-fill-out rounded-0 text-uppercase slider-link">
                                 Buy Now
                               </a>

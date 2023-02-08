@@ -58,11 +58,10 @@
 @import "pages/shop";
 
 .product-grid__image a,
-.product-grid__image img {
+.product-grid__image img, .product-grid__image video {
   width: 100%;
 }
 
-.product-grid__image img{
+.product-grid__image img, .product-grid__image video{
   height: 200px;
-  object-fit: cover;
 }

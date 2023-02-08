@@ -124,7 +124,7 @@ export async function getServerSideProps({query}) {
   return {
     props: {
       products: products.data.data || [],
-      bannerProduct: bannerProduct.data || [],
+      bannerProduct: bannerProduct || [],
     },
   };
 };

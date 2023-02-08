@@ -1,27 +1,29 @@
 import axiosInstance from "./axios-instance"
+const transformMediaUrl = (data) => {
+  data.image = process.env.NEXT_PUBLIC_MINIO_MEDIA_HOST + data.image
+  return data
+}
 
 export const bannerService = {
+  
   getHomeBanner1: async () => {
-    console.log('fetch banner data')
     const data = await axiosInstance.get(`/banner/homeBanner1`);
-    return data;
+    return transformMediaUrl(data.data);
   },
 
   getHomeBanner2: async () => {
-    console.log('fetch banner data')
     const data = await axiosInstance.get(`/banner/homeBanner2`);
-    return data;
+    return transformMediaUrl(data.data);
   },
 
   getBannerSlide: async () => {
     console.log('fetch banner data')
     const data = await axiosInstance.get(`/banner/homeSlide`);
-    return data;
+      return data.data.map(d => transformMediaUrl(d));
   },
 
   getBannerProductSidebar: async () => {
-    console.log('fetch banner data')
     const data = await axiosInstance.get(`/banner/productSidebarBanner`);
-    return data;
+    return transformMediaUrl(data.data);
   }
 }

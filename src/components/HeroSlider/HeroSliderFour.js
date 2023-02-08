@@ -55,7 +55,7 @@ const HeroSliderFour = ({ heroSliderData }) => {
                               {single.title}
                             </h2>
                             <p className="text">{single.text}</p>
-                            <Link href={single.url}>
+                            <Link href={single.url ?? ""}>
                               <a className="btn btn-white slider-link">
                                 Shop Now
                               </a>

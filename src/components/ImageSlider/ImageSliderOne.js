@@ -42,7 +42,7 @@ const ImageSliderOne = ({ imageSliderData }) => {
                   return (
                     <div className="item" key={key}>
                       <div className="instafeed-box">
-                        <a href={single.url}>
+                        <a href={single.url ?? ""}>
                           <img src={single.image} alt="insta_image" />
                         </a>
                       </div>

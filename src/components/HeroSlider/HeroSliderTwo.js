@@ -58,7 +58,7 @@ const HeroSliderTwo = ({ heroSliderData }) => {
                               <h2 className="space-mb--20 title">
                                 {single.title}
                               </h2>
-                              <Link href={single.url}>
+                              <Link href={single.url ?? ""}>
                                 <a className="btn btn-fill-out rounded-0 text-uppercase slider-link">
                                   Shop Now
                                 </a>

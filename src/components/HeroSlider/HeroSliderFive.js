@@ -58,7 +58,7 @@ const HeroSliderFive = ({ carouselProducts }) => {
                               <h2 className="space-mb--20 title">
                                 {single.name}
                               </h2>
-                              <Link href={single.slug}>
+                              <Link href={single.slug ?? ""}>
                                 <a className="btn btn-fill-out btn-radius text-uppercase slider-link">
                                   Shop Now
                                 </a>

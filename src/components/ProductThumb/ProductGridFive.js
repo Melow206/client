@@ -46,14 +46,26 @@ const ProductGridFive = ({
               as={"/product/" + product.slug}
             >
               <a>
-                <img src={imagesSrc[0]} alt="product_img1" />
-                {imagesSrc.length > 1 && (
-                  <img
-                    className="product-hover-image"
-                    src={colorImage ? colorImage : imagesSrc[1]}
-                    alt="product_img1"
-                  />
+                {product.thumb_image[0].type === "video" ? (
+                  <video controls>
+                    <source src={imagesSrc[0]} alt="product_img1" />
+                  </video>
+                ) : (
+                  <img src={imagesSrc[0]} alt="product_img1" />
                 )}
+                {product.thumb_image?.[1]?.type === "video"
+                  ? imagesSrc.length > 1 && (
+                      <video controls>
+                        <source src={imagesSrc[1]} alt="product_img1" />
+                      </video>
+                    )
+                  : imagesSrc.length > 1 && (
+                      <img
+                        className="product-hover-image"
+                        src={colorImage ? colorImage : imagesSrc[1]}
+                        alt="product_img1"
+                      />
+                    )}
               </a>
             </Link>
             <div className="product-grid__badge-wrapper">
@@ -72,14 +84,14 @@ const ProductGridFive = ({
             <div className="product-grid__action-box">
               <ul>
                 <li>
-                <Link
-                      href={`/product/[slug]?slug=${product.slug}`}
-                      as={"/product/" + product.slug}
-                    >
-                      <a>
-                        <i className="icon-basket-loaded" />
-                      </a>
-                    </Link>
+                  <Link
+                    href={`/product/[slug]?slug=${product.slug}`}
+                    as={"/product/" + product.slug}
+                  >
+                    <a>
+                      <i className="icon-basket-loaded" />
+                    </a>
+                  </Link>
                 </li>
                 <li>
                   <button
@@ -118,7 +130,9 @@ const ProductGridFive = ({
                 <Fragment>
                   <span className="price">${discountedPrice}</span>
                   <del>${productPrice}</del>
-                  <span className="on-sale">{getPercentDiscount(product)}% Off</span>
+                  <span className="on-sale">
+                    {getPercentDiscount(product)}% Off
+                  </span>
                 </Fragment>
               ) : (
                 <span className="price">${productPrice}</span>

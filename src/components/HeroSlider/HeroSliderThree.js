@@ -57,7 +57,7 @@ const HeroSliderThree = ({ heroSliderData }) => {
                             <h2 className="space-mb--20 title">
                               {single.title}
                             </h2>
-                            <p className="text">{single.text}</p>
+                            <p className="text">{single.text ?? ""}</p>
                             <Link href={single.url}>
                               <a className="btn btn-line-fill btn-radius staggered-animation text-uppercase slider-link">
                                 Shop Now

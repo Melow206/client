@@ -7,7 +7,7 @@ const BannerFive = ({ containerClass, banner }) => {
       <div className={`${containerClass ? containerClass : "container"}`}>
         <Row>
           {
-            banner.map(element => <Col md={4} key={element.id}>
+            banner.map((element,index) => <Col md={4} key={element.id ?? index}>
               <div className="sale-banner px-0">
                 <Link href={element.redirect_url ?? "/"}>
                   <a className="hover-effect">

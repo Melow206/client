@@ -4,6 +4,8 @@ import { Col } from "react-bootstrap";
 import ProductModal from "./elements/ProductModal";
 import { ProductRating } from "../Product";
 import { getPercentDiscount } from '../../lib/product';
+import { useEffect } from "react";
+import { getBlobSrc } from "../../common/helper";
 
 const ProductGridList = ({
   product,
@@ -24,7 +26,13 @@ const ProductGridList = ({
 }) => {
   const [modalShow, setModalShow] = useState(false);
   const [colorImage, setColorImage] = useState("");
+  const [imagesSrc, setImagesSrc] = useState([]);
 
+  useEffect(async ()=>{
+    setImagesSrc(await Promise.all(product.thumb_image.map(async (img) => {
+      return await getBlobSrc(img.url)
+    })));
+  }, [])
   return (
     <Fragment>
       <Col
@@ -40,11 +48,16 @@ const ProductGridList = ({
               href={`/product/[slug]?slug=${product.slug}`}
               as={"/product/" + product.slug}
             >
-              <a>
-                <img
-                  src={colorImage ? colorImage : product.thumb_image[0].url}
+              <a>{
+                  product.thumb_image?.[0] && (product.thumb_image[0].type === "image" ? (<img
+                  src={colorImage ? colorImage : imagesSrc[0]}
                   alt="product_img1"
-                />
+                />) : (<video controls>
+                  <source src={colorImage ? colorImage : imagesSrc[0]}/>
+
+                </video>))
+                }
+                
               </a>
             </Link>
             <div className="product-grid__badge-wrapper">
@@ -183,10 +196,15 @@ const ProductGridList = ({
               as={"/product/" + product.slug}
             >
               <a>
-                <img
-                  src={colorImage ? colorImage : product.thumb_image[0].url}
+                {
+                  product.thumb_image?.[0] && (product.thumb_image[0].type === "image" ? (<img
+                  src={colorImage ? colorImage : imagesSrc[0]}
                   alt="product_img1"
-                />
+                />) : (<video controls>
+                  <source src={colorImage ? colorImage : imagesSrc[0]}/>
+
+                </video>))
+                }
               </a>
             </Link>
             <div className="product-grid__badge-wrapper">

@@ -23,13 +23,12 @@ const ElectronicsTwo = ({
   slides,
   posts,
 }) => {
-
   return (
     <LayoutSix navPositionClass="justify-content-start" categories={categories}>
       {/* hero slider */}
       <HeroSliderSix heroSliderData={slides}/>
       {/* banner */}
-      <BannerFive banner={banner1} />
+      <BannerFive banner={[banner1]} />
       {/* category slider */}
       <CategorySliderTwo categorySliderData={categoriesSlide} />
       
@@ -109,9 +108,9 @@ export async function getServerSideProps() {
       flashSaleProducts: flashSaleProducts.data || [],
       dealOfTheDayProducts: dealOfTheDayProducts.data || [],
       carouselProducts: carouselProducts.data || [],
-      banner1: banner1.data || [],
-      banner2: banner2.data || [],
-      slides: slides.data || [],
+      banner1: banner1 || [],
+      banner2: banner2 || [],
+      slides: slides || [],
       posts: posts.data || [],
     },
   }
